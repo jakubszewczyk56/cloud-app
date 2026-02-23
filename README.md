@@ -19,10 +19,6 @@ Komunikacja pomiędzy front-endem a back-endem odbywa się poprzez REST API.
 | Application | Back-end API | backend container | Azure App Service |
 | Data | Database | PostgreSQL container | Azure Database for PostgreSQL |
 
-## Status Projektu
-- [ ] Artefakt 1: Architektura i struktura folderów
-- [ ] Artefakt 2: Docker Compose uruchomiony lokalnie
-
 ## Mapowanie architektury na usługi Azure
 
 | Warstwa | Komponent | Lokalnie (Docker) | Azure (docelowo) |
@@ -30,3 +26,7 @@ Komunikacja pomiędzy front-endem a back-endem odbywa się poprzez REST API.
 | Presentation | Front-end (React) | frontend container | Azure App Service (Web App) |
 | Application | Back-end API (Node.js) | backend container | Azure App Service (Web App – API) |
 | Data | Database | PostgreSQL container | Azure Database for PostgreSQL |
+
+## Status Projektu
+- [x] Artefakt 1: Architektura i struktura folderów
+- [x] Artefakt 2: Docker Compose uruchomiony lokalnie
