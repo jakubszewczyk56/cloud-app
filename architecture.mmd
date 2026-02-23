@@ -1,0 +1,14 @@
+C4Container
+  title Cloud Task Manager – Diagram Kontenerów (Level 2)
+
+  Person(user, "User", "Użytkownik aplikacji")
+
+  Container(frontend, "Frontend", "React 19 + Vite", "Interfejs użytkownika dostępny przez przeglądarkę")
+
+  Container(backend, "Backend API", "Node.js 24 + Express", "REST API obsługujące logikę aplikacji")
+
+  ContainerDb(database, "Database", "PostgreSQL", "Przechowywanie danych zadań")
+
+  Rel(user, frontend, "Korzysta z aplikacji", "HTTPS: 443")
+  Rel(frontend, backend, "Wywołania REST API", "HTTP: 3000")
+  Rel(backend, database, "Operacje CRUD", "TCP: 5432")

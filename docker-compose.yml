@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: cloudapp-db
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+      POSTGRES_DB: cloudapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    image: node:24-alpine
+    container_name: cloudapp-backend
+    working_dir: /app
+    command: sh -c "node -v && npm -v && tail -f /dev/null"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  frontend:
+    image: node:24-alpine
+    container_name: cloudapp-frontend
+    working_dir: /app
+    command: sh -c "node -v && npm -v && tail -f /dev/null"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
