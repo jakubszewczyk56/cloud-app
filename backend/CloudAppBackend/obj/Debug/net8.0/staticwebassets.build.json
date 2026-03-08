@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "66nJYLaP9NbkDEbls9ntHKs4EDIhrjlHSu0XMcaLOJQ=",
+  "Source": "CloudAppBackend",
+  "BasePath": "_content/CloudAppBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

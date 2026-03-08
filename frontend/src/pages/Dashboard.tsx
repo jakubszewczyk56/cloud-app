@@ -5,6 +5,7 @@ type Task = {
   id: number;
   title: string;
   description?: string;
+  isDone: boolean;
 };
 
 export default function Dashboard() {
@@ -14,8 +15,13 @@ export default function Dashboard() {
   useEffect(() => {
     api
       .get("/tasks")
-      .then((response) => setTasks(response.data))
-      .catch(() => setError("Nie udało się pobrać danych z API"));
+      .then((response) => {
+        setTasks(response.data);
+        setError("");
+      })
+      .catch(() => {
+        setError("Nie udało się pobrać danych z API");
+      });
   }, []);
 
   return (
@@ -30,6 +36,7 @@ export default function Dashboard() {
           <li key={task.id}>
             <strong>{task.title}</strong>
             {task.description ? ` - ${task.description}` : ""}
+            {task.isDone ? " [DONE]" : " [TODO]"}
           </li>
         ))}
       </ul>
