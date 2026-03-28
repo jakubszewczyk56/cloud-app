@@ -1,32 +1,62 @@
 # Cloud Task Manager
-**Autor:** Jakub Szewczyk  
-**Nr studenta:** 99604
+
+Aplikacja webowa do zarządzania zadaniami (CRUD) oparta o architekturę 3-warstwową i uruchamiana w Dockerze.
+
+## Autor
+Jakub Szewczyk  
+Nr studenta: 99604  
+
+---
 
 ## Opis projektu
-Cloud Task Manager to aplikacja webowa umożliwiająca użytkownikom zarządzanie listą zadań.
-Użytkownik może tworzyć, edytować, usuwać zadania oraz przeglądać ich szczegóły.
-Komunikacja pomiędzy front-endem a back-endem odbywa się poprzez REST API.
+
+Cloud Task Manager to aplikacja umożliwiająca zarządzanie listą zadań.  
+Użytkownik może:
+- dodawać zadania
+- edytować zadania
+- usuwać zadania
+- oznaczać zadania jako wykonane
+
+Frontend komunikuje się z backendem poprzez REST API.
+
+---
 
 ## Stos technologiczny
-- Front-end: React 19 + Vite
-- Back-end: Node.js 24 + Express
-- Database: PostgreSQL (Docker)
 
-## Mapowanie architektury na usługi Azure
-| Warstwa | Komponent | Lokalnie (Docker) | Azure (docelowo) |
-|---|---|---|---|
-| Presentation | Front-end (React) | frontend container | Azure App Service / Static Web Apps |
-| Application | Back-end API | backend container | Azure App Service |
-| Data | Database | PostgreSQL container | Azure Database for PostgreSQL |
+- Frontend: React + Vite + TypeScript
+- Backend: ASP.NET Core Web API (.NET 8)
+- ORM: Entity Framework Core
+- Baza danych: PostgreSQL
+- Konteneryzacja: Docker + Docker Compose
 
-## Mapowanie architektury na usługi Azure
+---
 
-| Warstwa | Komponent | Lokalnie (Docker) | Azure (docelowo) |
-|---|---|---|---|
-| Presentation | Front-end (React) | frontend container | Azure App Service (Web App) |
-| Application | Back-end API (Node.js) | backend container | Azure App Service (Web App – API) |
-| Data | Database | PostgreSQL container | Azure Database for PostgreSQL |
+## Architektura
 
-## Status Projektu
-- [x] Artefakt 1: Architektura i struktura folderów
-- [x] Artefakt 2: Docker Compose uruchomiony lokalnie
+| Warstwa       | Komponent        | Lokalnie (Docker) | Azure (docelowo) |
+|--------------|----------------|------------------|-----------------|
+| Presentation | React Frontend | frontend container | Azure App Service |
+| Application  | ASP.NET API    | backend container  | Azure App Service |
+| Data         | PostgreSQL     | db container       | Azure Database for PostgreSQL |
+
+---
+
+## Funkcjonalności
+
+- REST API (GET, POST, PUT, DELETE)
+- DTO (oddzielenie modelu od API)
+- migracje Entity Framework Core
+- formularz React do dodawania zadań
+- trwałość danych (Docker volume)
+
+---
+
+## Uruchomienie projektu
+
+### Wymagania
+- Docker Desktop
+
+### Start
+
+```bash
+docker compose up -d --build
