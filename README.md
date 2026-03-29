@@ -38,10 +38,10 @@ Aplikacja została zbudowana w architekturze klient-serwer, gdzie frontend komun
 Aplikacja została wdrożona w środowisku chmurowym Microsoft Azure:
 
 - Backend (API):  
-  https://cloud-task-manager-api-kuba-xxxxxxxx.azurewebsites.net  
+  https://cloud-task-manager-api-kuba-f7bdbbdsc8dtc2ht.germanywestcentral-01.azurewebsites.net/swagger
 
 - Frontend:  
-  (jeśli masz osobny adres — wklej tutaj, jeśli nie, backend URL wystarczy)
+  https://cloud-task-manager-api-kuba-f7bdbbdsc8dtc2ht.germanywestcentral-01.azurewebsites.net/
 
 ---
 
