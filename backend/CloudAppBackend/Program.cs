@@ -4,17 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var keyVaultName = builder.Configuration["KeyVaultName"];
-
-if (!string.IsNullOrEmpty(keyVaultName))
-{
-    var kvUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
-    builder.Configuration.AddAzureKeyVault(kvUri, new DefaultAzureCredential());
-}
+var dbConnectionString = "Server=tcp:cloud-app-server-123.database.windows.net,1433;Initial Catalog=cloud-db;Persist Security Info=False;User ID=CloudSAb305cfcb;Password=CloudTask123!Azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration["DbConnectionString"],
+        dbConnectionString,
         sqlOptions => sqlOptions.EnableRetryOnFailure()
     )
 );
