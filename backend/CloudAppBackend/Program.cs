@@ -1,41 +1,35 @@
+using Azure.Identity;
 using CloudAppBackend.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var keyVaultName = builder.Configuration["KeyVaultName"];
 
-builder.Services.AddCors(options =>
+if (!string.IsNullOrEmpty(keyVaultName))
 {
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy
-            .AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
+    var kvUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
+    builder.Configuration.AddAzureKeyVault(kvUri, new DefaultAzureCredential());
+}
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
+        builder.Configuration["DbConnectionString"],
         sqlOptions => sqlOptions.EnableRetryOnFailure()
     )
 );
 
-var app = builder.Build();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.UseCors("AllowFrontend");
-
-app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllers();
 
