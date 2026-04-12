@@ -157,7 +157,7 @@ export default function Dashboard() {
               onClick={handleAddTask}
               disabled={submitting}
             >
-              {submitting ? "Dodawanie..." : "Dodaj zadanie"}
+              {submitting ? "Dodawanie..." : "Dodaj rekord"}
             </button>
           </div>
         </section>
